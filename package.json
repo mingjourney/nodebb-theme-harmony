@@ -1,15 +1,15 @@
 {
-  "name": "nodebb-theme-harmony",
-  "version": "2.1.12",
+  "name": "@aidc/nodebb-theme-wtf",
+  "version": "1.0.0",
   "nbbpm": {
     "compatibility": "^4.0.0"
   },
-  "description": "Harmony theme for NodeBB",
+  "description": "WTF theme for NodeBB",
   "main": "library.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NodeBB/nodebb-theme-harmony"
-  },
+    "url": "https://github.com/mingjourney/nodebb-theme-harmony"
+    },
   "scripts": {
     "lint": "eslint ."
   },
@@ -30,11 +30,16 @@
       "name": "Barış Soner Uşaklı",
       "email": "baris@nodebb.org",
       "url": "https://github.com/barisusakli"
+    },
+    {
+      "name": "Gavin",
+      "email": "gavin.gjm@aidcaib.com",
+      "url": "https://github.com/mingjourney"
     }
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/NodeBB/nodebb-theme-harmony/issues"
+    "url": "https://github.com/mingjourney/nodebb-theme-harmony/issues"
   },
   "dependencies": {
     "@fontsource/inter": "5.0.15",
