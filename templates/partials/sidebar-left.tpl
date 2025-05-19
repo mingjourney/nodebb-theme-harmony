@@ -1,4 +1,10 @@
-<nav component="sidebar/left" class="{{{ if config.theme.openSidebars}}}open{{{ end }}} text-dark bg-light sidebar sidebar-left start-0 border-end vh-100 d-none d-lg-flex flex-column justify-content-between sticky-top">
+<nav component="sidebar/left" class="{{{ if config.theme.openSidebars}}}open{{{ end }}} text-dark bg-light sidebar open sidebar-left start-0 border-end vh-100 d-none d-lg-flex flex-column sticky-top">
+	<div class="sidebar-header d-flex align-items-center mx-3 my-3">
+		<a href="/" class="d-flex align-items-center text-nowrap">
+			<img src="https://chinatravel-wtf.oss-ap-southeast-1.aliyuncs.com/WTF%E7%AB%99%E7%82%B9UI%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/logo-left.png" alt="logo" class="sidebar-logo">
+			<img src="https://chinatravel-wtf.oss-ap-southeast-1.aliyuncs.com/WTF%E7%AB%99%E7%82%B9UI%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/logo-right.png" alt="logo" class="sidebar-logo">
+		</a>
+	</div>
 	<ul id="main-nav" class="list-unstyled d-flex flex-column w-100 gap-2 mt-2 overflow-y-auto">
 		{{{ each navigation }}}
 		{{{ if displayMenuItem(@root, @index) }}}
@@ -7,7 +13,7 @@
 				<span class="d-flex gap-2 align-items-center text-nowrap truncate-open">
 					<span class="position-relative">
 						{{{ if ./iconClass }}}
-						<i class="fa fa-fw {./iconClass}" data-content="{./content}"></i>
+						<i class="fa fa-fw {./iconClass} icon-left" data-content="{./content}"></i>
 						<span component="navigation/count" class="visible-closed position-absolute top-0 start-100 translate-middle badge rounded-1 bg-primary {{{ if !./content }}}hidden{{{ end }}}">{./content}</span>
 						{{{ end }}}
 					</span>

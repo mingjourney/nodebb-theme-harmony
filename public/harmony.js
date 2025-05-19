@@ -45,93 +45,93 @@ $(document).ready(function () {
 	});
 
 	function setupMobileMenu() {
-		require(['hooks', 'api', 'navigator'], function (hooks, api, navigator) {
-			$('[component="sidebar/toggle"]').on('click', async function () {
-				const sidebarEl = $('.sidebar');
-				sidebarEl.toggleClass('open');
-				if (app.user.uid) {
-					await api.put(`/users/${app.user.uid}/settings`, {
-						settings: {
-							openSidebars: sidebarEl.hasClass('open') ? 'on' : 'off',
-						},
-					});
-				}
-				$(window).trigger('action:sidebar.toggle');
-				if (ajaxify.data.template.topic) {
-					hooks.fire('action:navigator.update', { newIndex: navigator.getIndex() });
-				}
-			});
+		// require(['hooks', 'api', 'navigator'], function (hooks, api, navigator) {
+		// 	$('[component="sidebar/toggle"]').on('click', async function () {
+		// 		const sidebarEl = $('.sidebar');
+		// 		sidebarEl.toggleClass('open');
+		// 		if (app.user.uid) {
+		// 			await api.put(`/users/${app.user.uid}/settings`, {
+		// 				settings: {
+		// 					openSidebars: sidebarEl.hasClass('open') ? 'on' : 'off',
+		// 				},
+		// 			});
+		// 		}
+		// 		$(window).trigger('action:sidebar.toggle');
+		// 		if (ajaxify.data.template.topic) {
+		// 			hooks.fire('action:navigator.update', { newIndex: navigator.getIndex() });
+		// 		}
+		// 	});
 
-			const bottomBar = $('[component="bottombar"]');
-			let stickyTools = null;
-			const location = config.theme.topMobilebar ? 'top' : 'bottom';
-			const $body = $('body');
-			const $window = $(window);
-			$body.on('shown.bs.dropdown hidden.bs.dropdown', '.sticky-tools', function () {
-				bottomBar.toggleClass('hidden', $(this).find('.dropdown-menu.show').length);
-			});
-			function isSearchVisible() {
-				return !!$('[component="bottombar"] [component="sidebar/search"] .search-dropdown.show').length;
-			}
+		// 	const bottomBar = $('[component="bottombar"]');
+		// 	let stickyTools = null;
+		// 	const location = config.theme.topMobilebar ? 'top' : 'bottom';
+		// 	const $body = $('body');
+		// 	const $window = $(window);
+		// 	$body.on('shown.bs.dropdown hidden.bs.dropdown', '.sticky-tools', function () {
+		// 		bottomBar.toggleClass('hidden', $(this).find('.dropdown-menu.show').length);
+		// 	});
+		// 	function isSearchVisible() {
+		// 		return !!$('[component="bottombar"] [component="sidebar/search"] .search-dropdown.show').length;
+		// 	}
 
-			let lastScrollTop = $window.scrollTop();
-			let newPostsLoaded = false;
+		// 	let lastScrollTop = $window.scrollTop();
+		// 	let newPostsLoaded = false;
 
-			function onWindowScroll() {
-				const st = $window.scrollTop();
-				if (newPostsLoaded) {
-					newPostsLoaded = false;
-					lastScrollTop = st;
-					return;
-				}
-				if (st !== lastScrollTop && !navigator.scrollActive && !isSearchVisible()) {
-					const diff = Math.abs(st - lastScrollTop);
-					const scrolledDown = st > lastScrollTop;
-					const scrolledUp = st < lastScrollTop;
-					const isHiding = !scrolledUp && scrolledDown;
-					if (diff > 10) {
-						bottomBar.css({
-							[location]: isHiding ?
-								-bottomBar.find('.bottombar-nav').outerHeight(true) :
-								0,
-						});
-						if (stickyTools && config.theme.topMobilebar && config.theme.autohideBottombar) {
-							stickyTools.css({
-								top: isHiding ? 0 : 'var(--panel-offset)',
-							});
-						}
-					}
-				}
-				lastScrollTop = st;
-			}
+		// 	function onWindowScroll() {
+		// 		const st = $window.scrollTop();
+		// 		if (newPostsLoaded) {
+		// 			newPostsLoaded = false;
+		// 			lastScrollTop = st;
+		// 			return;
+		// 		}
+		// 		if (st !== lastScrollTop && !navigator.scrollActive && !isSearchVisible()) {
+		// 			const diff = Math.abs(st - lastScrollTop);
+		// 			const scrolledDown = st > lastScrollTop;
+		// 			const scrolledUp = st < lastScrollTop;
+		// 			const isHiding = !scrolledUp && scrolledDown;
+		// 			if (diff > 10) {
+		// 				bottomBar.css({
+		// 					[location]: isHiding ?
+		// 						-bottomBar.find('.bottombar-nav').outerHeight(true) :
+		// 						0,
+		// 				});
+		// 				if (stickyTools && config.theme.topMobilebar && config.theme.autohideBottombar) {
+		// 					stickyTools.css({
+		// 						top: isHiding ? 0 : 'var(--panel-offset)',
+		// 					});
+		// 				}
+		// 			}
+		// 		}
+		// 		lastScrollTop = st;
+		// 	}
 
-			const delayedScroll = utils.throttle(onWindowScroll, 250);
-			function enableAutohide() {
-				$window.off('scroll', delayedScroll);
-				if (config.theme.autohideBottombar) {
-					lastScrollTop = $window.scrollTop();
-					$window.on('scroll', delayedScroll);
-				}
-			}
+		// 	const delayedScroll = utils.throttle(onWindowScroll, 250);
+		// 	function enableAutohide() {
+		// 		$window.off('scroll', delayedScroll);
+		// 		if (config.theme.autohideBottombar) {
+		// 			lastScrollTop = $window.scrollTop();
+		// 			$window.on('scroll', delayedScroll);
+		// 		}
+		// 	}
 
-			hooks.on('action:posts.loading', function () {
-				$window.off('scroll', delayedScroll);
-			});
-			hooks.on('action:posts.loaded', function () {
-				newPostsLoaded = true;
-				setTimeout(enableAutohide, 250);
-			});
-			hooks.on('action:ajaxify.end', function () {
-				bottomBar.removeClass('hidden');
-				const { template } = ajaxify.data;
-				stickyTools = (template.category || template.topic) ? $('.sticky-tools') : null;
-				$window.off('scroll', delayedScroll);
-				if (config.theme.autohideBottombar) {
-					bottomBar.css({ [location]: 0 });
-					setTimeout(enableAutohide, 250);
-				}
-			});
-		});
+		// 	hooks.on('action:posts.loading', function () {
+		// 		$window.off('scroll', delayedScroll);
+		// 	});
+		// 	hooks.on('action:posts.loaded', function () {
+		// 		newPostsLoaded = true;
+		// 		setTimeout(enableAutohide, 250);
+		// 	});
+		// 	hooks.on('action:ajaxify.end', function () {
+		// 		bottomBar.removeClass('hidden');
+		// 		const { template } = ajaxify.data;
+		// 		stickyTools = (template.category || template.topic) ? $('.sticky-tools') : null;
+		// 		$window.off('scroll', delayedScroll);
+		// 		if (config.theme.autohideBottombar) {
+		// 			bottomBar.css({ [location]: 0 });
+		// 			setTimeout(enableAutohide, 250);
+		// 		}
+		// 	});
+		// });
 	}
 
 	function setupSearch() {

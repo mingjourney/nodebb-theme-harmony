@@ -13,7 +13,8 @@
 }
 
 .sidebar {
-	$hover-color: mix($light, $dark, 90%);
+	$hover-color: rgba(46, 116, 255, 0.08);
+	$hover-color-text: rgba(46, 116, 255, 1);
 
 	@include media-breakpoint-up(lg) {
 		&.open {
@@ -54,9 +55,21 @@
 		cursor: pointer;
 		&.active {
 			background-color: $hover-color;
+			.icon-left {
+				color: $hover-color-text;
+			}
+			.nav-text {
+				color: $hover-color-text;
+			}
 		}
 		&:hover {
 			background-color: $hover-color;
+			.icon-left {
+				color: $hover-color-text;
+			}
+			.nav-text {
+				color: $hover-color-text;
+			}
 		}
 	}
 

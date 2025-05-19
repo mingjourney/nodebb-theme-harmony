@@ -1,6 +1,6 @@
 {
-    "id": "nodebb-theme-harmony",
-    "name": "Harmony",
+    "id": "@aidc/nodebb-theme-wtf",
+    "name": "nodebb-them222e-wtf",
     "description": "The default theme for NodeBB. Uses a standard approach to forum design.",
     "url": "https://github.com/nodebb/nodebb-theme-harmony",
     "screenshot": "screenshot.png"
