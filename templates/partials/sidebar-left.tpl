@@ -1,9 +1,12 @@
-<nav component="sidebar/left" class="{{{ if config.theme.openSidebars}}}open{{{ end }}} text-dark bg-light sidebar open sidebar-left start-0 border-end vh-100 d-none d-lg-flex flex-column sticky-top">
-	<div class="sidebar-header d-flex align-items-center mx-3 my-3">
-		<a href="/" class="d-flex align-items-center text-nowrap">
-			<img src="https://chinatravel-wtf.oss-ap-southeast-1.aliyuncs.com/WTF%E7%AB%99%E7%82%B9UI%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/logo-left.png" alt="logo" class="sidebar-logo">
-			<img src="https://chinatravel-wtf.oss-ap-southeast-1.aliyuncs.com/WTF%E7%AB%99%E7%82%B9UI%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/logo-right.png" alt="logo" class="sidebar-logo">
-		</a>
+<nav component="sidebar/left" class="{{{ if config.theme.openSidebars}}}open{{{ end }}} text-dark bg-light sidebar sidebar-left start-0 border-end vh-100 d-none d-lg-flex flex-column sticky-top">
+	<div class="sidebar-toggle-container align-self-start">
+		<div class="sidebar-toggle m-2 d-none d-lg-block">
+			<a href="#" role="button" component="sidebar/toggle" class="nav-link d-flex gap-2 align-items-center p-2 pointer text-nowrap" title="[[themes/harmony:expand]]" aria-label="[[themes/harmony:sidebar-toggle]]">
+				<img class="fa fa-fw fa-angles-left" src="https://chinatravel-wtf.oss-ap-southeast-1.aliyuncs.com/WTF%E7%AB%99%E7%82%B9UI%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/logo-left.png"></img>
+				<img class="fa fa-fw fa-angles-right" src="https://chinatravel-wtf.oss-ap-southeast-1.aliyuncs.com/WTF%E7%AB%99%E7%82%B9UI%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/fold.png"></img>
+				<img style="margin-left: 2px; height: 20px;" class="nav-text visible-open fw-semibold small lh-1" src="https://chinatravel-wtf.oss-ap-southeast-1.aliyuncs.com/WTF%E7%AB%99%E7%82%B9UI%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/logo-wtf.png" alt="logo" class="sidebar-logo"></img>
+			</a>
+		</div>
 	</div>
 	<ul id="main-nav" class="list-unstyled d-flex flex-column w-100 gap-2 mt-2 overflow-y-auto">
 		{{{ each navigation }}}
@@ -30,17 +33,4 @@
 		{{{ end }}}
 		{{{ end }}}
 	</ul>
-	<div class="sidebar-toggle-container align-self-start">
-		{{{ if !config.disableCustomUserSkins }}}
-		<!-- IMPORT partials/skin-switcher.tpl -->
-		{{{ end }}}
-
-		<div class="sidebar-toggle m-2 d-none d-lg-block">
-			<a href="#" role="button" component="sidebar/toggle" class="nav-link d-flex gap-2 align-items-center p-2 pointer w-100 text-nowrap" title="[[themes/harmony:expand]]" aria-label="[[themes/harmony:sidebar-toggle]]">
-				<i class="fa fa-fw fa-angles-right"></i>
-				<i class="fa fa-fw fa-angles-left"></i>
-				<span class="nav-text visible-open fw-semibold small lh-1">[[themes/harmony:collapse]]</span>
-			</a>
-		</div>
-	</div>
 </nav>

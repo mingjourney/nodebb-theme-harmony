@@ -4,3 +4,7 @@
 		color: $gray-700!important;
 	}
 }
+#tag-search::placeholder {
+	color: $gray-500;
+    text-indent: 5px;
+}
