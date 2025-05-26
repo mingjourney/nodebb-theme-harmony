@@ -1,6 +1,6 @@
 {
   "name": "@aidc/nodebb-theme-wtf",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "nbbpm": {
     "compatibility": "^4.0.0"
   },

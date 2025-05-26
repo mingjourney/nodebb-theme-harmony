@@ -4,7 +4,10 @@
 	style="background-image: url('https://chinatravel-wtf.oss-ap-southeast-1.aliyuncs.com/WTF%E7%AB%99%E7%82%B9UI%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/{./valueEscaped}.png'); background-size: cover; background-position: center; background-repeat: no-repeat;"
 	>
 		<div class="fw-semibold text-nowrap tag-item w-100 text-start text-truncate">{./valueEscaped}</div>
-		<div class="text-xs text-muted text-nowrap tag-topic-count">{txEscape(formattedNumber(./score))}</div>
+		<div class="d-flex align-items-center gap-1">
+			<img src="https://chinatravel-wtf.oss-ap-southeast-1.aliyuncs.com/WTF%E7%AB%99%E7%82%B9UI%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/post-count-icon.png" alt="{./valueEscaped}" style="width: 12px;">
+			<div class="text-xs text-muted text-nowrap tag-topic-count">{txEscape(formattedNumber(./score))}</div>
+		</div>
 	</a>
 </div>
 {{{end}}}
